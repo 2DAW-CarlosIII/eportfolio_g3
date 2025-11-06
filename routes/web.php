@@ -34,7 +34,7 @@ Route::get('/suma/{num1}/{num2}', function($num1, $num2)
 // Rutas
 Route::get('/', function()
 {
-    return "Pantalla pricnipal";
+    return "Pantalla principal";
 });
 
 Route::get('login', function()
@@ -46,26 +46,31 @@ Route::get('logout', function()
     return "Logout usuario";
 });
 
+Route::get('familias-profesionales', function()
+{
+    return "Listado familias profesionales";
+});
+
 Route::get('familias-profesionales/show/{id}', function($id)
 {
-    return "Vista detalle proyecto $id";
+    return "Vista detalle familia profesional $id";
 })->where('id', '[0-9]+');
 
 Route::get('familias-profesionales/create', function()
 {
-    return "Añadir proyecto";
+    return "Añadir familia profesional";
 })->where('id', '[0-9]+');
 
 Route::get('familias-profesionales/edit/{id}', function($id)
 {
-    return "Modificar proyecto $id";
+    return "Modificar familia profesional $id";
 })->where('id', '[0-9]+');
 
 Route::get('perfil/{id?}', function($id = null)
 {
     if($id){
-        return "Visualizar el perfil de $id";
+        return "Visualizar el usuario de $id";
     } else {
-        return "Visualizar el perfil propio";
+        return "Visualizar el usuario propio";
     }
 })->where('id', '[0-9]+');
