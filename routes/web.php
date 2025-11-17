@@ -8,7 +8,7 @@ Route::get('/', function () {
 
 // ----------------------------------------
 Route::get('login', function () {
-    return "Login usuario";
+    return view('auth.login');
 });
 Route::get('logout', function () {
     return "Logout usuario";
@@ -18,19 +18,19 @@ Route::get('logout', function () {
 // ----------------------------------------
 Route::prefix('familias-profesionales')->group(function () {
     Route::get('/', function () {
-        return 'Listado familias profesionales';
+        return view('familiasProfesionales.index');
     });
 
     Route::get('create', function () {
-        return 'Añadir familia profesional';
+        return view('familiasProfesionales.create');
     });
 
     Route::get('show/{id}', function ($id) {
-        return 'Vista detalle familia profesional ' . $id;
+        return view('familiasProfesionales.show', ['id' => $id]);
     }) -> where('id', '[0-9]+');
 
     Route::get('edit/{id}', function ($id) {
-        return 'Modificar familia profesional ' . $id;
+        return view('familiasProfesionales.edit', ['id' => $id]);
     }) -> where('id', '[0-9]+');
 });
 
