@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+<<<<<<< HEAD
     <div class="row">
 
         @foreach ($familiasProfesionales as $key => $proyecto)
@@ -24,4 +25,7 @@
                 </section>
             </div>
         @endforeach
+=======
+    Vista principal de familias profesionales
+>>>>>>> 1f40044c643565f9932617e5f5e9eefc57bf4cef
 @stop

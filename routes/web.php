@@ -8,7 +8,11 @@ Route::get('/', function () {
 
 // ----------------------------------------
 Route::get('login', function () {
+<<<<<<< HEAD
     return view('auth.login');
+=======
+    return view('auth/login');
+>>>>>>> 1f40044c643565f9932617e5f5e9eefc57bf4cef
 });
 Route::get('logout', function () {
     return "Logout usuario";
@@ -26,11 +30,19 @@ Route::prefix('familias-profesionales')->group(function () {
     });
 
     Route::get('show/{id}', function ($id) {
+<<<<<<< HEAD
         return view('familias-profesionales.show', array('id'=> $id));
     }) -> where('id', '[0-9]+');
 
     Route::get('edit/{id}', function ($id) {
         return view('familias-profesionales.edit', array('id'=> $id));
+=======
+        return view('familias-profesionales.show', array('id' => $id));
+    }) -> where('id', '[0-9]+');
+
+    Route::get('edit/{id}', function ($id) {
+        return view('familias-profesionales.edit', array('id' => $id));
+>>>>>>> 1f40044c643565f9932617e5f5e9eefc57bf4cef
     }) -> where('id', '[0-9]+');
 });
 

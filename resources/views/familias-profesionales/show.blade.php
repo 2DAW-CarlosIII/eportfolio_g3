@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+<<<<<<< HEAD
 
     <div class="row m-4">
 
@@ -31,4 +32,7 @@
         </div>
     </div>
 
+=======
+    Vista familias profesionales con ID: {{ $id }}
+>>>>>>> 1f40044c643565f9932617e5f5e9eefc57bf4cef
 @stop
