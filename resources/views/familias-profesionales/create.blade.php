@@ -17,21 +17,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="docente_id">Docente</label>
-                            <input type="number" name="docente_id" id="docente_id">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="dominio">Dominio</label><br />
-                            https://github.com/2DAW-CarlosIII/
-                            <input type="text" name="dominio" id="dominio" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="metadatos">Metadatos</label>
-                            <textarea name="metadatos" id="metadatos" class="form-control" rows="3"></textarea>
-                            <br /><small>Cada metadato irá separado del siguiente por una línea <br />
-                                y la clave irá separada por : del valor</small>
+                            <label for="docente_id">Código</label>
+                            <input type="number" name="codigo" id="codigo">
                         </div>
 
                         <div class="form-group text-center">
