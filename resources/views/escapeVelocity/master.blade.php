@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Escape Velocity by HTML5 UP</title>
+		<title>EPortfolio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="{{ asset('/escapeVelocity/assets/css/main.css') }}" />
@@ -22,7 +22,7 @@
 
 			<!-- Footer -->
             @include('escapeVelocity.partials.footer')
-            
+
 		</div>
 
 		<!-- Scripts -->
