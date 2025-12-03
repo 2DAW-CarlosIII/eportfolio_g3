@@ -8,14 +8,14 @@
                 <section class="box">
                     <a href="#" class="image featured"><img src="{{ asset('/images/mp-logo.png') }}" alt="" /></a>
                     <header>
-                        <h3>{{ $familiaProfesional['codigo'] }}</h3>
+                        <h3>{{ $familiaProfesional->codigo }}</h3>
                     </header>
                     <p>
-                        <h3>{{ $familiaProfesional['nombre']}}</h3>
+                        <h3>{{ $familiaProfesional->nombre }}</h3>
                     </p>
                     <footer>
                         <ul class="actions">
-                            <li><a href="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'getShow'], ['id' => $key]) }}"
+                            <li><a href="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'getShow'], $familiaProfesional->id) }}"
                                     class="button alt">Más info</a></li>
                         </ul>
                     </footer>
