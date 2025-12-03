@@ -3,23 +3,34 @@
 @section('content')
     <div class="row">
 
-        @foreach ($familiasProfesionales as $key => $familiaProfesional)
+        @foreach ($resultadosAprendizajes as $resultado)
             <div class="col-4 col-6-medium col-12-small">
                 <section class="box">
-                    <a href="#" class="image featured"><img src="{{ asset('/images/mp-logo.png') }}" alt="" /></a>
+                    <a href="#" class="image featured">
+                        <img src="{{ asset('/images/mp-logo.png') }}" alt="" />
+                    </a>
+
                     <header>
-                        <h3>{{ $familiaProfesional['codigo'] }}</h3>
+                        <h3>{{ $resultado->codigo }}</h3>
                     </header>
+
                     <p>
-                        <h3>{{ $familiaProfesional['nombre']}}</h3>
+                        {{ $resultado->descripcion }}
                     </p>
+
                     <footer>
                         <ul class="actions">
-                            <li><a href="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'getShow'], ['id' => $key]) }}"
-                                    class="button alt">Más info</a></li>
+                            <li>
+                                <a href="{{ action([App\Http\Controllers\ResultadosAprendizajesController::class, 'getShow'], ['id' => $resultado->id]) }}"
+                                    class="button alt">
+                                    Más info
+                                </a>
+                            </li>
                         </ul>
                     </footer>
                 </section>
             </div>
         @endforeach
+
 @stop
+
