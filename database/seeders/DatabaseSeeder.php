@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
+
     /**
      * Seed the application's database.
      */
@@ -22,10 +23,10 @@ class DatabaseSeeder extends Seeder
         // llamadas a otros ficheros de seed
         $this->call(CiclosFormativosTableSeeder::class);
         $this->call(ResultadosAprendizajeTableSeeder::class);
+        $this->call(CriteriosEvaluacionTableSeeder::class);
         // llamadas a otros ficheros de seed
 
         Model::reguard();
-
         Schema::enableForeignKeyConstraints();
     }
 }
