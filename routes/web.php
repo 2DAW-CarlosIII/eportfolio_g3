@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\CiclosFormativosController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\CiclosFormativosController;
 use App\Http\Controllers\FamiliasProfesionalesController;
+use App\Http\Controllers\ResultadosAprendizajesController;
 
 Route::get('/', function () {
     return view('home');
@@ -46,4 +48,16 @@ Route::prefix('ciclos-formativos')->group(function () {
 
    Route::post('store', [CiclosFormativosController::class, 'store']);
    Route::put('update/{id}', [CiclosFormativosController::class, 'update']) -> where('id', '[0-9]+');
+});
+
+
+// ----------------------------------------
+Route::prefix('resultados-aprendizaje')->group(function () {
+   Route::get('/', [ResultadosAprendizajesController::class, 'getIndex']);
+   Route::get('create', [ResultadosAprendizajesController::class, 'getCreate']);
+   Route::get('show/{id}', [ResultadosAprendizajesController::class, 'getShow']) -> where('id', '[0-9]+');
+   Route::get('edit/{id}', [ResultadosAprendizajesController::class, 'getEdit']) -> where('id', '[0-9]+');
+
+   Route::post('store', [ResultadosAprendizajesController::class, 'store']);
+   Route::put('update/{id}', [ResultadosAprendizajesController::class, 'update']) -> where('id', '[0-9]+');
 });
