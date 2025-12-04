@@ -15,7 +15,7 @@
             <h2>{{ $familiasProfesionales->codigo }}</h2>
             <h2>{{ $familiasProfesionales->nombre }}</h2>
             <ul class="actions">
-                <li><a href="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'getEdit'], $familiaProfesionales->id) }}"
+                <li><a href="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'getEdit'], $familiasProfesionales->id) }}"
                         class="button alt">Editar proyecto</a>
                 </li>
                 <li><a href="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'getIndex']) }}"
