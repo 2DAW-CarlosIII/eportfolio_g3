@@ -29,12 +29,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         Schema::disableForeignKeyConstraints();
 
-        // llamadas a otros ficheros de seed
-        //$this->call(FamiliasProfesionalesTableSeeder::class);
-        //$this->call(CiclosFormativosTableSeeder::class);
         $this->call(ResultadosAprendizajeTableSeeder::class);
-        //$this->call(CriteriosEvaluacionTableSeeder::class);
-        // llamadas a otros ficheros de seed
 
         Model::reguard();
 
