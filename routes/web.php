@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CriteriosEvaluacionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FamiliasProfesionalesController;
 
@@ -40,4 +41,22 @@ Route::prefix('familias-profesionales')->group(function () {
    Route::post('store', [FamiliasProfesionalesController::class, 'store']);
 
    Route::put('update/{id}', [FamiliasProfesionalesController::class, 'update']) -> where('id', '[0-9]+');
+});
+
+// ----------------------------------------
+Route::prefix('criterios-evaluacion')->group(function () {
+   Route::get('/', [CriteriosEvaluacionController::class, 'getIndex']);
+
+
+   Route::get('create', [CriteriosEvaluacionController::class, 'getCreate']);
+
+
+   Route::get('show/{id}', [CriteriosEvaluacionController::class, 'getShow']) -> where('id', '[0-9]+');
+
+
+   Route::get('edit/{id}', [CriteriosEvaluacionController::class, 'getEdit']) -> where('id', '[0-9]+');
+
+   Route::post('store', [CriteriosEvaluacionController::class, 'store']);
+
+   Route::put('update/{id}', [CriteriosEvaluacionController::class, 'update']) -> where('id', '[0-9]+');
 });
