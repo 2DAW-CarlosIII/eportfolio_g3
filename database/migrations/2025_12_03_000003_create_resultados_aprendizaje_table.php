@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('resultados_aprendizaje', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->integer('modulo_formativo_id')->nullable();
             $table->string('codigo', 50);
             $table->string('descripcion');
             $table->float('peso_procentaje')->min(0)->max(100);
             $table->integer('orden')->min(1);
+            $table->timestamps();
         });
     }
 

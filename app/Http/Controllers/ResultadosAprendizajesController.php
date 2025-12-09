@@ -37,4 +37,25 @@ class ResultadosAprendizajesController extends Controller
         return view('resultados-aprendizaje.edit')
             ->with('resultado', $resultado);
     }
+
+    public function postCreate(Request $request) {
+        $resultados_aprendizaje = new ResultadoAprendizaje();
+        $resultados_aprendizaje -> codigo = $request -> input('codigo');
+        $resultados_aprendizaje -> modulo_formativo_id = $request -> input('modulo_formativo_id');
+        $resultados_aprendizaje -> descripcion = $request -> input('descripcion');
+        $resultados_aprendizaje -> peso_porcentaje = $request -> input('peso_porcentaje');
+        $resultados_aprendizaje -> orden = $request -> input('orden');
+        return redirect() -> action([ResultadosAprendizajesController::class, 'getShow'], ['id' => $resultados_aprendizaje -> id]);
+    }
+
+    public function putCreate(Request $request, $id) {
+        $resultados_aprendizaje = ResultadoAprendizaje::findOrFail($id);
+        $resultados_aprendizaje -> codigo = $request -> input('codigo');
+        $resultados_aprendizaje -> modulo_formativo_id = $request -> input('modulo_formativo_id');
+        $resultados_aprendizaje -> descripcion = $request -> input('descripcion');
+        $resultados_aprendizaje -> peso_porcentaje = $request -> input('peso_porcentaje');
+        $resultados_aprendizaje -> orden = $request -> input('orden');
+        $resultados_aprendizaje -> save();
+        return redirect() -> action([ResultadosAprendizajesController::class, 'getShow'], ['id' => $resultados_aprendizaje -> id]);
+    }
 }
