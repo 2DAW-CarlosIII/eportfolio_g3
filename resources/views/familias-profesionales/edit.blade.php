@@ -19,7 +19,7 @@
 
                         <div class="form-group">
                             <label for="docente_id">Código</label>
-                            <input type="number" name="codigo" id="codigo" value="{{ $familiasProfesionales->codigo }}>
+                            <input type="text" name="codigo" id="codigo" value="{{ $familiasProfesionales->codigo }}">
                         </div>
 
                         <div class="form-group text-center">
