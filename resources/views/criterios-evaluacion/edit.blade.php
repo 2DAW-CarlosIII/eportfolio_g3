@@ -15,7 +15,13 @@
                         @method('PUT')
 
                         <div class="form-group">
-                            <label for="codigo">código</label>
+                            <label for="resultado-aprendizaje">Resultado de aprendizaje</label>
+                            <input type="number" name="resultado-aprendizaje" id="resultado-aprendizaje" class="form-control"
+                                value="{{ $criteriosEvaluacion->resultado_aprendizaje_id}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="codigo">Código</label>
                             <input type="text" name="codigo" id="codigo" class="form-control"
                                 value="{{ $criteriosEvaluacion->codigo }}">
                         </div>
@@ -26,8 +32,21 @@
                                 value="{{ $criteriosEvaluacion->descripcion }}">
                         </div>
 
+                        <div class="form-group">
+                            <label for="porcentaje">Porcentaje</label>
+                            <input type="number" name="porcentaje" id="porcentaje"
+                                value="{{ $criteriosEvaluacion->porcentaje }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="orden">Orden</label>
+                            <input type="number" name="orden" id="orden"
+                                value="{{ $criteriosEvaluacion->orden }}">
+                        </div>
+
+
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
+                            <button type="submit" class="btn btn-primary" style="margin-top:25px;">
                                 Modificar criterio de evaluación
                             </button>
                         </div>
