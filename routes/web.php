@@ -71,6 +71,6 @@ Route::prefix('resultados-aprendizaje')->group(function () {
    Route::get('show/{id}', [ResultadosAprendizajesController::class, 'getShow']) -> where('id', '[0-9]+');
    Route::get('edit/{id}', [ResultadosAprendizajesController::class, 'getEdit']) -> where('id', '[0-9]+');
 
-   Route::post('store', [ResultadosAprendizajesController::class, 'store']);
-   Route::put('update/{id}', [ResultadosAprendizajesController::class, 'update']) -> where('id', '[0-9]+');
+   Route::post('store', [ResultadosAprendizajesController::class, 'postCreate']);
+   Route::put('update/{id}', [ResultadosAprendizajesController::class, 'putCreate'])->where('id', '[0-9]+');
 });
