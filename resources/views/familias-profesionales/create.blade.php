@@ -7,7 +7,7 @@
                 <div class="card-header text-center">Añadir Familia Profesional</div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'store']) }}" method="POST">
+                    <form action="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'postCreate']) }}" method="POST">
 
                         @csrf
 
@@ -17,8 +17,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="docente_id">Código</label>
-                            <input type="number" name="codigo" id="codigo">
+                            <label for="codigo">Código</label>
+                            <input type="text" name="codigo" id="codigo">
                         </div>
 
                         <div class="form-group text-center">
