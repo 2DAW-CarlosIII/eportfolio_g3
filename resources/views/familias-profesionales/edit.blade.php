@@ -7,7 +7,7 @@
                 <div class="card-header text-center">Modificar Familia Profesional</div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'update'], $familiasProfesionales->id) }}" method="POST">
+                    <form action="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'putCreate'], $familiasProfesionales->id) }}" method="POST">
 
                         @csrf
                         @method('PUT')
@@ -18,8 +18,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="docente_id">Código</label>
-                            <input type="number" name="codigo" id="codigo" value="{{ $familiasProfesionales->codigo }}>
+                            <label for="codigo">Código</label>
+                            <input type="text" name="codigo" id="codigo" value="{{ $familiasProfesionales->codigo }}">
                         </div>
 
                         <div class="form-group text-center">
