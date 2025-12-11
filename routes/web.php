@@ -3,6 +3,7 @@
 use App\Http\Controllers\CiclosFormativosController;
 use App\Http\Controllers\CriteriosEvaluacionController;
 use App\Http\Controllers\FamiliasProfesionalesController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResultadosAprendizajesController;
 use Illuminate\Support\Facades\Route;
@@ -12,9 +13,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
-Route::get('/', function () {
-    return view('home');
-});
+
 
 
 
@@ -28,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/', [HomeController::class, 'getHome'])
+    ->name('home');
 // ----------------------------------------
 Route::prefix('familias-profesionales')->group(function () {
    Route::get('/', [FamiliasProfesionalesController::class, 'getIndex']);
@@ -75,7 +76,6 @@ Route::prefix('resultados-aprendizaje')->group(function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-
     //Familias profesionales ----------
         Route::get('create', [FamiliasProfesionalesController::class, 'getCreate']);
         Route::post('store', [FamiliasProfesionalesController::class, 'store']);
