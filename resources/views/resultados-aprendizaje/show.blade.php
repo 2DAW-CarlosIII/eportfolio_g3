@@ -19,12 +19,14 @@
             <p><strong>Módulo formativo ID:</strong> {{ $resultado->modulo_formativo_id }}</p>
 
             <ul class="actions">
+                @auth
                 <li>
                     <a href="{{ action([App\Http\Controllers\ResultadosAprendizajesController::class, 'getEdit'], ['id' => $resultado->id]) }}"
                        class="button alt">
                         Editar resultado
                     </a>
                 </li>
+                @endauth
 
                 <li>
                     <a href="{{ action([App\Http\Controllers\ResultadosAprendizajesController::class, 'getIndex']) }}"

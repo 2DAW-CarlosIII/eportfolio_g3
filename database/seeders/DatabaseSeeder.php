@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CiclosFormativosTableSeeder::class);
         $this->call(ResultadosAprendizajeTableSeeder::class);
         $this->call(CriteriosEvaluacionTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
         // llamadas a otros ficheros de seed
 
         Model::reguard();

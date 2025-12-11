@@ -11,29 +11,32 @@
     <nav id="nav">
         <ul>
             @section('menu')
-                <li class="current"><a href="index.html">Home</a></li>
-                <li>
-                    <a href="#">Dropdown</a>
-                    <ul>
-                        <li><a href="#">Lorem ipsum</a></li>
-                        <li><a href="#">Magna veroeros</a></li>
-                        <li><a href="#">Etiam nisl</a></li>
+                <li class="current"><a href="{{ route('home') }}">Home</a></li>
+                @if (Route::has('login'))
+                    @auth
                         <li>
-                            <a href="#">Sed consequat</a>
-                            <ul>
-                                <li><a href="#">Lorem dolor</a></li>
-                                <li><a href="#">Amet consequat</a></li>
-                                <li><a href="#">Magna phasellus</a></li>
-                                <li><a href="#">Etiam nisl</a></li>
-                                <li><a href="#">Sed feugiat</a></li>
-                            </ul>
+                            <a href="{{ url('/dashboard') }}"
+                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                                Dashboard
+                            </a>
                         </li>
-                        <li><a href="#">Nisl tempus</a></li>
-                    </ul>
-                </li>
-                <li><a href="left-sidebar.html">Left Sidebar</a></li>
-                <li><a href="right-sidebar.html">Right Sidebar</a></li>
-                <li><a href="no-sidebar.html">No Sidebar</a></li>
+                    @else
+                        <li>
+                            <a href="{{ route('login') }}"
+                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
+                                Log in
+                            </a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li>
+                                <a href="{{ route('register') }}"
+                                    class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                                    Register
+                                </a>
+                            </li>
+                        @endif
+                    @endauth
+                @endif
             @show
         </ul>
     </nav>
