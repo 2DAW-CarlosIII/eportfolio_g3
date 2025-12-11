@@ -15,9 +15,11 @@
             <h2>RA.{{$criteriosEvaluacion->resultado_aprendizaje_id}} {{ $criteriosEvaluacion->codigo}}</h2>
             <h2>{{ $criteriosEvaluacion->descripcion}} orden: {{$criteriosEvaluacion->orden}}</h2>
             <ul class="actions">
+                @auth
                 <li><a href="{{ action([App\Http\Controllers\CriteriosEvaluacionController::class, 'getEdit'], ['id' => $criteriosEvaluacion->id]) }}"
                         class="button alt">Editar proyecto</a>
                 </li>
+                @endauth
                 <li><a href="{{ action([App\Http\Controllers\CriteriosEvaluacionController::class, 'getIndex']) }}"
                         class="button alt">Volver al listado</a>
                 </li>

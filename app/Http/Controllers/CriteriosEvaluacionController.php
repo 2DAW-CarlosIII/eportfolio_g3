@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CriterioEvaluacion;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class CriteriosEvaluacionController extends Controller
 {
@@ -18,7 +19,6 @@ class CriteriosEvaluacionController extends Controller
         return view('criterios-evaluacion.show')
             ->with('criteriosEvaluacion', CriterioEvaluacion::findOrFail($id))
             ->with('id', $id);
-
     }
 
     public function getCreate()
@@ -33,25 +33,16 @@ class CriteriosEvaluacionController extends Controller
             ->with('id', $id);
     }
 
-    public function postCreate(Request $request){
-        $criterioEvaluacion = new CriterioEvaluacion();
-        $criterioEvaluacion->resultado_aprendizaje_id = $request->input('resultado-aprendizaje');
-        $criterioEvaluacion->codigo = $request->input('codigo');
-        $criterioEvaluacion->descripcion = $request->input('descripcion');
-        $criterioEvaluacion->peso_porcentaje = $request->input('porcentaje');
-        $criterioEvaluacion->orden = $request->input('orden');
-        $criterioEvaluacion->save();
-        return redirect()->action([CriteriosEvaluacionController::class, 'getShow'], ['id' => $criterioEvaluacion->id]);
+    public function postCreate(Request $request): RedirectResponse
+    {
+        $criterioEvaluacion = CriterioEvaluacion::create($request->all());
+        return redirect()->action([self::class, 'getShow'], ['id' => $criterioEvaluacion->id]);
     }
 
-    public function putCreate(Request $request){
-        $criterioEvaluacion = CriterioEvaluacion::findOrFail($request->route('id'));
-        $criterioEvaluacion->resultado_aprendizaje_id = $request->input('resultado-aprendizaje');
-        $criterioEvaluacion->codigo = $request->input('codigo');
-        $criterioEvaluacion->descripcion = $request->input('descripcion');
-        $criterioEvaluacion->peso_porcentaje = $request->input('porcentaje');
-        $criterioEvaluacion->orden = $request->input('orden');
-        $criterioEvaluacion->save();
-        return redirect()->action([CriteriosEvaluacionController::class, 'getShow'], ['id' => $criterioEvaluacion->id]);
+    public function putCreate(Request $request, $id): RedirectResponse
+    {
+        $criterioEvaluacion = CriterioEvaluacion::findOrFail($id);
+        $criterioEvaluacion->update($request->all());
+        return redirect()->action([self::class, 'getShow'], ['id' => $criterioEvaluacion->id]);
     }
 }
