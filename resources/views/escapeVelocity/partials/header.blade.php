@@ -20,6 +20,7 @@
                                 Dashboard
                             </a>
                         </li>
+                        @include('escapeVelocity.partials.dropdown-user')
                     @else
                         <li>
                             <a href="{{ route('login') }}"
