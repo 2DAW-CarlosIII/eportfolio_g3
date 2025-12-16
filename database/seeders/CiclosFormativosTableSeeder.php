@@ -16,13 +16,13 @@ class CiclosFormativosTableSeeder extends Seeder
         DB::table('ciclos_formativos')->truncate();
 
         // Obtenemos los códigos de las familias profesionales para relacionar el ID
-        //$familias = FamiliasProfesionalesSeeder::$familias_profesionales;
-        //$codigosFamilias = array_column($familias, 'codigo');
+        $familias = FamiliasProfesionalesTableSeeder::$familiaProfesional;
+        $codigosFamilias = array_column($familias, 'codigo');
 
         // Insertamos los datos iniciales de los ciclos formativos. Datos reales.
         foreach (self::$ciclos as $ciclo) {
             DB::table('ciclos_formativos')->insert([
-                //'familia_profesional_id' => array_search($ciclo['codFamilia'], $codigosFamilias) + 1,
+                'familia_profesional_id' => array_search($ciclo['codFamilia'], $codigosFamilias) + 1,
                 'nombre' => $ciclo['nombre'],
                 'codigo' => $ciclo['codCiclo'],
                 'grado' => $ciclo['grado'],
