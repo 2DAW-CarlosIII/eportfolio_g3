@@ -15,9 +15,11 @@
             <h2>{{ $ciclosFormativos->codigo }}</h2>
             <h2>{{ $ciclosFormativos->nombre }}</h2>
             <ul class="actions">
+                @auth
                 <li><a href="{{ action([App\Http\Controllers\CiclosFormativosController::class, 'getEdit'], ['id' => $ciclosFormativos->id]) }}"
                         class="button alt">Editar ciclo</a>
                 </li>
+                @endauth
                 <li><a href="{{ action([App\Http\Controllers\CiclosFormativosController::class, 'getIndex']) }}"
                         class="button alt">Volver al listado</a>
                 </li>
