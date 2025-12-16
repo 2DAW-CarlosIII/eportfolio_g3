@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary" style="100px;margin-top:25px; color:white;">
+                            <button type="submit" class="btn btn-primary" style="margin-top:25px; color:white;">
                                 Añadir Ciclo Formativo
                             </button>
                         </div>
