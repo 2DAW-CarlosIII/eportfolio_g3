@@ -7,7 +7,7 @@
                 <div class="card-header text-center">Modificar Familia Profesional</div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'putCreate'], $familiasProfesionales->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'putEdit'], $familiasProfesionales->id) }}" method="POST" enctype="multipart/form-data">
 
                         @csrf
                         @method('PUT')

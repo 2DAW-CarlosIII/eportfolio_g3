@@ -38,7 +38,7 @@ Route::prefix('familias-profesionales')->group(function () {
         Route::get('create', [FamiliasProfesionalesController::class, 'getCreate']);
         Route::get('edit/{id}', [FamiliasProfesionalesController::class, 'getEdit']) -> where('id', '[0-9]+');
         Route::post('store', [FamiliasProfesionalesController::class, 'postCreate']);
-        Route::put('update/{id}', [FamiliasProfesionalesController::class, 'putCreate']) -> where('id', '[0-9]+');
+        Route::put('update/{id}', [FamiliasProfesionalesController::class, 'putEdit']) -> where('id', '[0-9]+');
     });
 });
 

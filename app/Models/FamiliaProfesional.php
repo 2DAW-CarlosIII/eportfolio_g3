@@ -8,5 +8,5 @@ class FamiliaProfesional extends Model
 {
     protected $table = 'familias_profesionales';
 
-    protected $fillable = ['nombre', 'codigo'];
+    protected $fillable = ['nombre', 'codigo', 'imagen'];
 }
