@@ -37,4 +37,15 @@ class ResultadosAprendizajesController extends Controller
         return view('resultados-aprendizaje.edit')
             ->with('resultado', $resultado);
     }
+
+    public function postCreate(Request $request) {
+        $resultados_aprendizaje = ResultadoAprendizaje::create($request->all());
+        return redirect()->action([self::class, 'getShow'], ['id' => $resultados_aprendizaje->id]);
+    }
+
+    public function putCreate(Request $request, $id) {
+        $resultados_aprendizaje = ResultadoAprendizaje::findOrFail($id);
+        $resultados_aprendizaje->update($request->all());
+        return redirect()->action([self::class, 'getShow'], ['id' => $resultados_aprendizaje->id]);
+    }
 }
