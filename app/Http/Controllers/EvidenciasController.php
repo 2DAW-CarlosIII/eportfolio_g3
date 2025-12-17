@@ -6,7 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Evidencias;
 
-class FamiliasProfesionalesController extends Controller
+class EvidenciasController extends Controller
 {
     public function getIndex()
     {
