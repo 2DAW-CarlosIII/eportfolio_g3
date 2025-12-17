@@ -84,4 +84,21 @@ Route::prefix('resultados-aprendizaje')->group(function () {
     });
 });
 
+
+// ----------------------------------------
+// Rutas para la subida de ficheros de evidencias
+// Añadir el controlador de evidencias
+Route::prefix('evidencias')->group(function () {
+    Route::get('/', [ResultadosAprendizajesController::class, 'getIndex']);
+    Route::get('show/{id}', [ResultadosAprendizajesController::class, 'getShow']) -> where('id', '[0-9]+');
+
+    Route::middleware('auth')->group(function () {
+        Route::get('create', [ResultadosAprendizajesController::class, 'getCreate']);
+        Route::get('edit/{id}', [ResultadosAprendizajesController::class, 'getEdit']) -> where('id', '[0-9]+');
+        Route::post('store', [ResultadosAprendizajesController::class, 'postCreate']);
+        Route::put('update/{id}', [ResultadosAprendizajesController::class, 'putEdit']) -> where('id', '[0-9]+');
+    });
+});
+
+
 require __DIR__.'/auth.php';
