@@ -9,6 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
+
+                    @if ($user->avatar)
+                        <img width="200" style="height:200px" src="{{ Storage::url($user->avatar) }}" alt="imagen" class="img-thumbnail">
+                    @else
+                        <img width="200" style="height:200px" alt="Curriculum-vitae-warning-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Curriculum-vitae-warning-icon.svg/256px-Curriculum-vitae-warning-icon.svg.png">
+                    @endif
+
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
