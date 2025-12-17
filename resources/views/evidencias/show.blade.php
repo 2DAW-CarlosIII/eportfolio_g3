@@ -10,8 +10,11 @@
 
         </div>
         <div class="col-sm-8">
+            <h2>{{ $evidencias->estudiante_id }}</h2>
             <h2>{{ $evidencias->tarea_id }}</h2>
+            <h2>{{ $evidencias->url }}</h2>
             <h2>{{ $evidencias->descripcion }}</h2>
+            <h2>{{ $evidencias->estado_validacion }}</h2>
             <ul class="actions">
                 @auth
                 <li><a href="{{ action([App\Http\Controllers\EvidenciasController::class, 'getEdit'], $evidencias->id) }}"
