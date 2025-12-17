@@ -46,4 +46,19 @@ class FamiliasProfesionalesController extends Controller
        $familiaProfesional->update($request->all());
        return redirect()->action([self::class, 'getShow'], ['id' => $familiaProfesional->id]);
     }
+
+    public function putEdit(Request $request, $id): RedirectResponse
+    {
+        $familiaProfesional = FamiliaProfesional::findOrFail($id);
+
+        $datosEditados = $request->all();
+
+        if ($request->hasFile('imagen')) {
+            $path = $request->file('imagen')->store('imagenes', ['disk' => 'public']);
+            $datosEditados['imagen'] = $familiaProfesional->imagen = $path;
+        }
+
+        $familiaProfesional->update($datosEditados);
+        return redirect()->action([self::class, 'getShow'], ['id' => $familiaProfesional->id]);
+    }
 }
