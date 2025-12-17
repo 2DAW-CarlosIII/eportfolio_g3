@@ -11,6 +11,16 @@
 
                         @csrf
 
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <div class="form-group">
                             <label for="tarea_id">ID de Tarea</label>
                             <input type="number" name="tarea_id" id="tarea_id" class="form-control">
@@ -18,7 +28,7 @@
 
                         <div class="form-group">
                             <label for="url">Docuemto de evidencia</label>
-                            <input type="file" name="documento" id="documento" class="form-control" placeholder="documento">
+                            <input type="file" name="url" id="url" class="form-control" placeholder="documento">
                         </div>
 
                         <div class="form-group">
@@ -27,8 +37,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="estado_evidencia">Estado de validación</label>
-                            <select name="estado_evidencia" id="estado_evidencia">
+                            <label for="estado_validacion">Estado de validación</label>
+                            <select name="estado_validacion" id="estado_validacion">
                                 <option value="pendiente">Pendiente</option>
                                 <option value="validada">Validada</option>
                                 <option value="rechazada">Rechazada</option>

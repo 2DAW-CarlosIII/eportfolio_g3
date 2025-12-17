@@ -15,7 +15,7 @@
                     </p>
                     <footer>
                         <ul class="actions">
-                            <li><a href="{{ action([App\Http\Controllers\EvidenciasController::class, 'getShow'], $evidencias->id) }}"
+                            <li><a href="{{ action([App\Http\Controllers\EvidenciasController::class, 'getShow'], $evidencia->id) }}"
                                     class="button alt">Más info</a></li>
                         </ul>
                     </footer>

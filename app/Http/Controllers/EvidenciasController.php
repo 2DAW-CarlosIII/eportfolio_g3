@@ -36,8 +36,18 @@ class EvidenciasController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-       $evidencias = Evidencia::create($request->all());
-       return redirect()->action([self::class, 'getShow'], ['id' => $evidencias->id]);
+        $datosEnviados = $request->validate([
+            'tarea_id' => 'required | integer',
+            'url' => 'required | file',
+            'descripcion' => 'required | string',
+            'estado_validacion' => 'required|in:pendiente,validada,rechazada'
+        ]);
+
+        $path = $request->file('url')->store('documento', ['disk' => 'public']);
+        $datosEnviados['url'] = $path;
+
+        $evidencias = Evidencia::create($datosEnviados);
+        return redirect()->action([self::class, 'getShow'], ['id' => $evidencias->id]);
     }
 
     public function update(Request $request, $id): RedirectResponse
