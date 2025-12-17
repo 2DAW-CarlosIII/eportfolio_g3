@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FamiliaProfesional;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Models\Evidencias;
 
 class FamiliasProfesionalesController extends Controller
 {
     public function getIndex()
     {
         return view('evidencias.index')
-            ->with('familiasProfesionales', FamiliaProfesional::all());
+            ->with('Evidencias', Evidencias::all());
     }
 
     public function getShow($id)
     {
         return view('evidencias.show')
-            ->with('familiasProfesionales', FamiliaProfesional::findOrFail($id))
+            ->with('Evidencias', Evidencias::findOrFail($id))
             ->with('id', $id);
 
     }
@@ -29,21 +29,21 @@ class FamiliasProfesionalesController extends Controller
 
     public function getEdit($id)
     {
-        return view('familias-profesionales.edit')
-            ->with('familiasProfesionales', FamiliaProfesional::findOrFail($id))
+        return view('evidencias.edit')
+            ->with('Evidencias', Evidencias::findOrFail($id))
             ->with('id', $id);
     }
 
     public function postCreate(Request $request): RedirectResponse
     {
-        $familiaProfesional = FamiliaProfesional::create($request->all());
-        return redirect()->action([self::class, 'getShow'], ['id' => $familiaProfesional->id]);
+        $evidencias = Evidencias::create($request->all());
+        return redirect()->action([self::class, 'getShow'], ['id' => $evidencias->id]);
     }
 
     public function putCreate(Request $request, $id): RedirectResponse
     {
-       $familiaProfesional = FamiliaProfesional::findOrFail($id);
-       $familiaProfesional->update($request->all());
-       return redirect()->action([self::class, 'getShow'], ['id' => $familiaProfesional->id]);
+       $evidencias = Evidencias::findOrFail($id);
+       $evidencias->update($request->all());
+       return redirect()->action([self::class, 'getShow'], ['id' => $evidencias->id]);
     }
 }
