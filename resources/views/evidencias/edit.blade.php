@@ -8,7 +8,7 @@
 
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ action([App\Http\Controllers\EvidenciasController::class, 'putCreate'], ['id' => $evidencia->id]) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ action([App\Http\Controllers\EvidenciasController::class, 'update'], ['id' => $evidencia->id]) }}" method="POST" enctype="multipart/form-data">
 
                         @csrf
                         @method('PUT')

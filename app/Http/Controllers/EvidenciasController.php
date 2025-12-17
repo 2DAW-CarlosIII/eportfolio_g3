@@ -34,13 +34,13 @@ class EvidenciasController extends Controller
             ->with('id', $id);
     }
 
-    public function putCreate(Request $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
        $evidencias = Evidencia::create($request->all());
        return redirect()->action([self::class, 'getShow'], ['id' => $evidencias->id]);
     }
 
-    public function postCreate(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
     {
         $evidencias = Evidencia::findOrFail($id);
 

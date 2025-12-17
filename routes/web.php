@@ -96,8 +96,8 @@ Route::prefix('evidencias')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('create', [EvidenciasController::class, 'getCreate']);
         Route::get('edit/{id}', [EvidenciasController::class, 'getEdit']) -> where('id', '[0-9]+');
-        Route::post('store', [EvidenciasController::class, 'postCreate']);
-        Route::put('update/{id}', [EvidenciasController::class, 'putEdit']) -> where('id', '[0-9]+');
+        Route::post('store', [EvidenciasController::class, 'store']);
+        Route::put('update/{id}', [EvidenciasController::class, 'update']) -> where('id', '[0-9]+');
     });
 });
 
