@@ -18,7 +18,7 @@
                 @auth
                 <li>
                     <a href="{{ action([App\Http\Controllers\CriteriosEvaluacionController::class, 'getEdit'], ['id' => $criteriosEvaluacion->id]) }}"
-                        class="button alt">Editar proyecto</a>
+                        class="button alt">Editar critero</a>
                 </li>
                 @endauth
 

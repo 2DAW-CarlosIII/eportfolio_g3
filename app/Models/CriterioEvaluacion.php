@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class CriterioEvaluacion extends Model
 {
     protected $table = 'criterios_evaluacion';
+
+    protected $fillable = ['codigo', 'resultado_aprendizaje_id'];
 }

@@ -17,7 +17,7 @@
             <ul class="actions">
                 @auth
                 <li><a href="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'getEdit'], $familiasProfesionales->id) }}"
-                        class="button alt">Editar proyecto</a>
+                        class="button alt">Editar familia profesinal</a>
                 </li>
                 @endauth
                 <li><a href="{{ action([App\Http\Controllers\FamiliasProfesionalesController::class, 'getIndex']) }}"
