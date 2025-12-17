@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Models\Evidencias;
+use App\Models\Evidencia;
 
 class EvidenciasController extends Controller
 {
