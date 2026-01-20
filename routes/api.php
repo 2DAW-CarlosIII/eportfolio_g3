@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\EvidenciaController;
 use Psr\Http\Message\ServerRequestInterface;
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
@@ -17,6 +18,11 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('tareas', TareasController::class);
     Route::apiResource('criterios-evaluacion.tareas', TareasController::class)->parameters(['criterios-evaluacion' => 'criterios']);
     Route::apiResource('resultados-aprendizaje.tareas', TareasController::class)->parameters(['resultados-aprendizaje' => 'resultados']);
+
+    // --------------------------------------------------
+    // EVIDENCIAS
+    Route::apiResource('evidencias', EvidenciaController::class);
+    Route::apiResource('tareas.evidencias', EvidenciaController::class);
 });
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
