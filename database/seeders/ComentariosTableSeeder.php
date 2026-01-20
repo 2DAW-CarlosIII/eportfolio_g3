@@ -2,99 +2,34 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Container\Attributes\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Comentarios;
 use Illuminate\Database\Seeder;
 
 class ComentariosTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $comentarios = [
-            [
-                'evidencia_id' => 1,
-                'user_id' => 2,
-                'comentario' => '',
-                'tipo' => 'profesor',
+        Comentarios::truncate();
+
+        foreach (self::$comentarios as $comentario) {
+            Comentarios::insert([
+                'evidencia_id' => $comentario['evidencia_id'],
+                'user_id' => $comentario['user_id'],
+                'comentario' => $comentario['comentario'],
+                'tipo' => $comentario['tipo'],
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
-                'evidencia_id' => 1,
-                'user_id' => 3,
-                'comentario' => '',
-                'tipo' => 'estudiante',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'evidencia_id' => 2,
-                'user_id' => 4,
-                'comentario' => '',
-                'tipo' => 'profesor',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'evidencia_id' => 2,
-                'user_id' => 5,
-                'comentario' => '',
-                'tipo' => 'estudiante',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'evidencia_id' => 3,
-                'user_id' => 6,
-                'comentario' => '',
-                'tipo' => 'profesor',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'evidencia_id' => 3,
-                'user_id' => 7,
-                'comentario' => '',
-                'tipo' => 'estudiante',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'evidencia_id' => 4,
-                'user_id' => 8,
-                'comentario' => '',
-                'tipo' => 'profesor',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'evidencia_id' => 4,
-                'user_id' => 9,
-                'comentario' => '',
-                'tipo' => 'estudiante',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'evidencia_id' => 5,
-                'user_id' => 10,
-                'comentario' => '',
-                'tipo' => 'profesor',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'evidencia_id' => 5,
-                'user_id' => 11,
-                'comentario' => '',
-                'tipo' => 'estudiante',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ];
-        //DB::table('comentarios')->insert($comentarios);
+            ]);
+        }
+
+        $this->command->info('¡Tabla comentarios inicializada con datos!');
     }
+
+    public static $comentarios = [
+        ['evidencia_id' => 1, 'user_id' => 1, 'comentario' => 'Comentario 1', 'tipo' => 'profesor'],
+        ['evidencia_id' => 2, 'user_id' => 2, 'comentario' => 'Comentario 2', 'tipo' => 'estudiante'],
+        ['evidencia_id' => 3, 'user_id' => 3, 'comentario' => 'Comentario 3', 'tipo' => 'profesor'],
+        ['evidencia_id' => 4, 'user_id' => 1, 'comentario' => 'Comentario 4', 'tipo' => 'estudiante'],
+        ['evidencia_id' => 5, 'user_id' => 2, 'comentario' => 'Comentario 5', 'tipo' => 'profesor'],
+    ];
 }

@@ -22,8 +22,6 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); //users (tabla)
             $table->text('comentario');
             $table->enum('tipo', ['profesor', 'estudiante']);
-            //$table->timestamps('created_at');
-            //$table->timestamps('updated_at');
             $table->timestamps();
         });
     }
