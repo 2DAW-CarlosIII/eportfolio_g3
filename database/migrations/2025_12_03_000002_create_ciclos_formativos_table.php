@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('ciclos_formativos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('familia_profesional_id')->constrained('familias_profesionales')->onDelete('cascade');
             $table->string('nombre', 255);
             $table->string('codigo', 50);
             $table->enum('grado', ['básico', 'medio', 'superior']);
