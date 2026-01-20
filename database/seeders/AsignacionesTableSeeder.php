@@ -5,74 +5,85 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CriteriosTareasTableSeeder extends Seeder
+class AsigancionesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $criterios_tareas = [
+        $asignaciones = [
             [
-                'tarea_id' => 1, // ID de la tarea
-                'actividad_id' => 1, // ID de la actividad
+                'evidencia_id' => 1, // ID de evidencia
+                'revisor_id' => 2,    // ID del revisor
+                'asignado_por_id' => 3, // ID del usuario que asignó
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'tarea_id' => 2,
-                'actividad_id' => 2,
+                'evidencia_id' => 2,
+                'revisor_id' => 4,
+                'asignado_por_id' => 5,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'tarea_id' => 3,
-                'actividad_id' => 3,
+                'evidencia_id' => 3,
+                'revisor_id' => 6,
+                'asignado_por_id' => 7,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'tarea_id' => 4,
-                'actividad_id' => 4,
+                'evidencia_id' => 4,
+                'revisor_id' => 8,
+                'asignado_por_id' => 9,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'tarea_id' => 5,
-                'actividad_id' => 5,
+                'evidencia_id' => 5,
+                'revisor_id' => 10,
+                'asignado_por_id' => 11,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'tarea_id' => 6,
-                'actividad_id' => 6,
+                'evidencia_id' => 6,
+                'revisor_id' => 12,
+                'asignado_por_id' => 13,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'tarea_id' => 7,
-                'actividad_id' => 7,
+                'evidencia_id' => 7,
+                'revisor_id' => 14,
+                'asignado_por_id' => 15,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'tarea_id' => 8,
-                'actividad_id' => 8,
+                'evidencia_id' => 8,
+                'revisor_id' => 16,
+                'asignado_por_id' => 17,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'tarea_id' => 9,
-                'actividad_id' => 9,
+                'evidencia_id' => 9,
+                'revisor_id' => 18,
+                'asignado_por_id' => 19,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'tarea_id' => 10,
-                'actividad_id' => 10,
+                'evidencia_id' => 10,
+                'revisor_id' => 20,
+                'asignado_por_id' => 21,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
         ];
+
     }
 }

@@ -11,14 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //$table->unsignedBigInteger('estudiante_id')->nullable();
+        //$table->foreign('estudiante_id')->references('id')->on('users')->onDelete('cascade');
+
         Schema::create('comentarios', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('evidencia_id')->constrained('evidencias')->onDelete('cascade'); //evidencias (tabla)
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); //users (tabla)
+            $table->id()->primary();
+            $table->unsignedBigInteger('evidencia_id');
+            $table->foreign('evidencia_id')->references('id')->on('evidencias')->onDelete('cascade'); //evidencias (tabla)
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); //users (tabla)
             $table->text('comentario');
             $table->enum('tipo', ['profesor', 'estudiante']);
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');
+            //$table->timestamps('created_at');
+            //$table->timestamps('updated_at');
             $table->timestamps();
         });
     }

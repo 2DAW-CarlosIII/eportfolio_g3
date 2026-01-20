@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('criterios_tareas', function (Blueprint $table) {
-            $table->id('tarea_id');
-            $table->id('actividad_id');
+            //$table->foreignId('tarea_id')->constrained('tareas')->onDelete('cascade');
+            //$table->foreignId('actividad_id')->constrained('actividades')->onDelete('cascade');
+
+            $table->primary(['tarea_id', 'actividad_id']);
             $table->timestamps();
         });
     }
