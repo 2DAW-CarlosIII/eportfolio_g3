@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('criterios_tareas', function (Blueprint $table) {
             //$table->foreignId('tarea_id')->constrained('tareas')->onDelete('cascade');
             //$table->foreignId('actividad_id')->constrained('actividades')->onDelete('cascade');
-
+            $table->unsignedBigInteger('tarea_id');
+            $table->unsignedBigInteger('actividad_id');
             $table->primary(['tarea_id', 'actividad_id']);
             $table->timestamps();
         });
