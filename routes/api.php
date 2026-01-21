@@ -16,12 +16,21 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 // Rutas /api/v1
 
 Route::prefix('v1')->group(function () {
-    Route::apiResource('matriculas', MatriculasController::class);
-    Route::apiResource('resultados_aprendizaje', ResultadoAprendizajeController::class)->parameters([
+
+
+    Route::apiResource('modulos_formativos.matriculas', MatriculasController::class)->parameters([
+        'modulos_formativos' => 'moduloFormativo'
+    ]);
+
+    Route::get('matriculas', [MatriculasController::class, 'modulosMatriculados'])->middleware(['auth:sanctum']);
+
+
+    Route::apiResource('modulos_formativos.resultados_aprendizaje', ResultadoAprendizajeController::class)->parameters([
         'resultados_aprendizaje' => 'resultadoAprendizaje'
     ]);
-    Route::apiResource('criterios_evaluacion', CriterioEvaluacionController::class)->parameters([
-        'criterios_evaluacion' => 'criterioEvaluacion'
+
+    Route::apiResource('resultados_aprendizaje.criterios_evaluacion', CriterioEvaluacionController::class)->parameters([
+        'resultados_aprendizaje' => 'resultadoAprendizaje'
     ]);
 });
 

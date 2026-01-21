@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\MatriculaResource;
 use App\Models\Matricula;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MatriculasController extends Controller
 {
@@ -29,6 +31,20 @@ class MatriculasController extends Controller
         $matricula = Matricula::create($matricula);
 
         return new MatriculaResource($matricula);
+    }
+
+    // Devuelve una colección de módulos formativos en los que el usuario autenticado tiene matrícula.
+    public function modulosMatriculados(Request $request)
+    {
+        $emailAutenticado = Auth::user()->email;
+        $usuarios = DB::table('users')->where('email', $emailAutenticado)->get();
+        $usuario_id = $usuarios->id;
+
+        $modulos_matriculados = DB::table('matriculas')->where('estudiante_id', $usuario_id);
+
+        return ModeloFormativoResource::collection(
+            ModeloFormativo::whereIn('id', $modulos_matriculados)
+        );
     }
 
     /**
