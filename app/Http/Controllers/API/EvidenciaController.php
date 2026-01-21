@@ -21,7 +21,8 @@ class EvidenciaController extends Controller
         return EvidenciaResource::collection(
             Evidencia::where('criterio_evaluacion_id', $criterios->id)
                 ->orderBy($request->sort ?? 'id', $request->order ?? 'asc')
-                ->paginate($request->per_page));
+                ->paginate($request->per_page)
+        );
     }
 
     public function showUserEvidencias(Request $request, $parent_id)

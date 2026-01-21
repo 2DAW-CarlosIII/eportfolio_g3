@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ComentariosTableSeeder::class);
         $this->call(TareasTableSeeder::class);
         $this->call(EvidenciasTableSeeder::class);
+        $this->call(EvaluacionesEvidenciasTableSeeder::class);
         // llamadas a otros ficheros de seed
 
         Model::reguard();

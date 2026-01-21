@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ComentariosController;
 use App\Http\Controllers\API\AsignacionesController;
 use App\Http\Controllers\API\CriteriosTareasController;
+use App\Http\Controllers\API\EvaluacionEvidenciaController;
 use App\Http\Controllers\API\TareasController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
@@ -41,6 +42,12 @@ Route::prefix('v1')->group(function () {
     // EVIDENCIAS
     Route::apiResource('tareas.evidencias', EvidenciaController::class);
     Route::get('users/{parent_id}/evidencias', [EvidenciaController::class, 'showUserEvidencias']);
+
+    // --------------------------------------------------
+    // EVALUACION EVIDENCIAS
+    Route::apiResource('evidencias.evaluaciones-evidencias', EvaluacionEvidenciaController::class)->parameters([
+        'evaluaciones-evidencias' => 'evaluacionEvidencia'
+    ]);
 });
 
 /*
