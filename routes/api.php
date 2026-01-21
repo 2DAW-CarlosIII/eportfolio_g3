@@ -30,11 +30,6 @@ Route::prefix('v1')->group(function () {
         ]);
 });
 
-/*
-|--------------------------------------------------------------------------
-| FALLBACK PHP-CRUD-API
-|--------------------------------------------------------------------------
-*/
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
         'address'  => env('DB_HOST', '127.0.0.1'),
@@ -55,7 +50,6 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
             ['X-Total-Count' => count($records)]
         );
     } catch (\Throwable $th) {
-        // Si no hay records, devolvemos la respuesta original
     }
 
     return $response;
