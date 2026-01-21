@@ -39,8 +39,9 @@ class TareasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tarea $tarea)
+    public function show(CriterioEvaluacion $criterios, Tarea $tarea)
     {
+        abort_if($tarea->criterios_evaluacion_id !== $criterios->id, 404, "No se encuentra la evidencia");
         return new TareaResource($tarea);
     }
 

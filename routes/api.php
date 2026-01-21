@@ -33,14 +33,14 @@ Route::prefix('v1')->group(function () {
 
     // --------------------------------------------------
     // TAREAS
-    Route::apiResource('tareas', TareasController::class);
-    Route::apiResource('criterios-evaluacion.tareas', TareasController::class)->parameters(['criterios-evaluacion' => 'criterios']);
-    Route::apiResource('resultados-aprendizaje.tareas', TareasController::class)->parameters(['resultados-aprendizaje' => 'resultados']);
+    //Route::apiResource('tareas', TareasController::class);
+    //Route::apiResource('criterios-evaluacion.tareas', TareasController::class)->parameters(['criterios-evaluacion' => 'criterios']);
+    //Route::apiResource('resultados-aprendizaje.tareas', TareasController::class)->parameters(['resultados-aprendizaje' => 'resultados']);
 
     // --------------------------------------------------
     // EVIDENCIAS
-    Route::apiResource('evidencias', EvidenciaController::class);
     Route::apiResource('tareas.evidencias', EvidenciaController::class);
+    Route::get('users/{parent_id}/evidencias', [EvidenciaController::class, 'showUserEvidencias']);
 });
 
 /*
