@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ComentariosResource;
 use App\Models\Comentarios;
+use App\Models\Evidencia;
 use Illuminate\Http\Request;
 
 class ComentariosController extends Controller
@@ -12,56 +13,57 @@ class ComentariosController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request, Evidencia $evidencia)
     {
-        return ComentariosResource::collection(
-            Comentarios::orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
-            ->paginate($request->perPage));
+         return ComentariosResource::collection(
+            Comentarios::where('evidencia_id', $evidencia->id)
+                ->orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
+                ->paginate($request->perPage)
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Evidencia $evidencia)
     {
-        $comentario = json_decode($request->getContent(), true);
+        $comentarioData = json_decode($request->getContent(), true);
+        $comentarioData['evidencia_id'] = $evidencia->id;
 
-        $comentario = Comentarios::create($comentario);
-
+        $comentario = Comentarios::create($comentarioData);
         return new ComentariosResource($comentario);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Comentarios $comentarios)
+    public function show(Comentarios $comentario, Evidencia $evidencia)
     {
-         return new ComentariosResource($comentarios);
+         abort_if($comentario->evidencia_id !== $evidencia->id, 404);
+        return new ComentariosResource($comentario);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comentarios $comentarios)
+    public function update(Request $request, Evidencia $evidencia, Comentarios $comentario)
     {
-        $comentariosData = json_decode($request->getContent(), true);
-        $comentarios->update($comentariosData);
+        abort_if($comentario->evidencia_id !== $evidencia->id, 404);
 
-        return new ComentariosResource($comentarios);
+        $comentarioData = json_decode($request->getContent(), true);
+        $comentario->update($comentarioData);
+
+        return new ComentariosResource($comentario);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comentarios $comentarios)
+    public function destroy(Comentarios $comentario, Evidencia $evidencia)
     {
-        try {
-            $comentarios->delete();
-            return response()->json(null, 204);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Error: ' . $e->getMessage()
-            ], 400);
-        }
+        abort_if($comentario->evidencia_id !== $evidencia->id, 404);
+
+        $comentario->delete();
+        return response()->json(null, 204);
     }
 }
