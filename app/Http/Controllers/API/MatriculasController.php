@@ -34,18 +34,20 @@ class MatriculasController extends Controller
     }
 
     // Devuelve una colección de módulos formativos en los que el usuario autenticado tiene matrícula.
-    public function modulosMatriculados(Request $request)
-    {
-        $emailAutenticado = Auth::user()->email;
-        $usuarios = DB::table('users')->where('email', $emailAutenticado)->get();
-        $usuario_id = $usuarios->id;
+    /*
+        public function modulosMatriculados(Request $request)
+        {
+            $emailAutenticado = Auth::user()->email;
+            $usuarios = DB::table('users')->where('email', $emailAutenticado)->get();
+            $usuario_id = $usuarios->id;
 
-        $modulos_matriculados = DB::table('matriculas')->where('estudiante_id', $usuario_id);
+            $modulos_matriculados = DB::table('matriculas')->where('estudiante_id', $usuario_id);
 
-        return ModeloFormativoResource::collection(
-            ModeloFormativo::whereIn('id', $modulos_matriculados)
-        );
-    }
+            return ModuloFormativoResource::collection(
+                ModuloFormativo::whereIn('id', $modulos_matriculados)
+            );
+        }
+    */
 
     /**
      * Display the specified resource.
