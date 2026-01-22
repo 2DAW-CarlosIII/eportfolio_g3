@@ -26,7 +26,7 @@ Route::prefix('v1')->group(function () {
 
 
     Route::apiResource('modulos_formativos.resultados_aprendizaje', ResultadoAprendizajeController::class)->parameters([
-        'resultados_aprendizaje' => 'resultadoAprendizaje'
+        'modulos_formativos' => 'moduloFormativo'
     ]);
 
     Route::apiResource('resultados_aprendizaje.criterios_evaluacion', CriterioEvaluacionController::class)->parameters([
