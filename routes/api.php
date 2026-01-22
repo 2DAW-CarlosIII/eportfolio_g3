@@ -8,26 +8,32 @@ use Tqdev\PhpCrudApi\Config\Config;
 use App\Http\Controllers\API\ComentariosController;
 use App\Http\Controllers\API\AsignacionesController;
 use App\Http\Controllers\API\CriteriosTareasController;
+use App\Http\Controllers\EvidenciasController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::prefix('v1')->group(function () {
-    Route::apiResource('comentarios', ComentariosController::class)
+    // ------------------------------------------------
+    // COMENTARIOS
+    Route::apiResource('evidencias.comentarios', ComentariosController::class)
         ->parameters([
-            'comentarios' => 'comentario'
+            'evidencias' => 'evidencia_id',
+            'comentarios' => 'comentario_id'
         ]);
 
-    Route::apiResource('asignaciones', AsignacionesController::class)
+    // ------------------------------------------------
+    // ASIGNACIONES
+    Route::apiResource('evidencias.asignaciones-revision', AsignacionesController::class)
         ->parameters([
-            'asignaciones' => 'asignacion'
+            'evidencias' => 'evidencias_id',
+            'asignaciones-revision' => 'asignacion-revision_id'
         ]);
 
-    Route::apiResource('criterios-tareas', CriteriosTareasController::class)
-        ->parameters([
-            'criterios-tareas' => 'criterioTarea'
-        ]);
+    // ------------------------------------------------
+    // USER-ASIGNACIONES
+    Route::get('users/{user_id}/asignaciones-revision', [AsignacionesController::class, 'asignacionUsuarios']);
 });
 
 Route::any('/{any}', function (ServerRequestInterface $request) {

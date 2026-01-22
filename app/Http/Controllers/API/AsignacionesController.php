@@ -64,4 +64,12 @@ class AsignacionesController extends Controller
             ], 400);
         }
     }
+
+    public function asignacionUsuarios(Request $request, $user_id)
+    {
+        return AsignacionesResource::collection(
+            Asignaciones::where('user_id', $user_id)
+            ->orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
+            ->paginate($request->perPage));
+    }
 }
