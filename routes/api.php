@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
@@ -10,12 +11,15 @@ use App\Http\Controllers\API\CriteriosTareasController;
 use App\Http\Controllers\API\EvaluacionEvidenciaController;
 use App\Http\Controllers\API\EvidenciaController;
 use App\Http\Controllers\API\TareasController;
-use App\Http\Controllers\API\EvaluacionEvidenciaController;
+use App\Http\Controllers\API\CriterioEvaluacionController;
+use App\Http\Controllers\API\MatriculasController;
+use App\Http\Controllers\API\ResultadoAprendizajeController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Rutas PHP-CRUD-API
 Route::prefix('v1')->group(function () {
     // ------------------------------------------------
     // COMENTARIOS
@@ -48,6 +52,24 @@ Route::prefix('v1')->group(function () {
     // EVALUACION EVIDENCIAS
     Route::apiResource('evidencias.evaluaciones-evidencias', EvaluacionEvidenciaController::class)->parameters([
         'evaluaciones-evidencias' => 'evaluacionEvidencia'
+    ]);
+  
+    // --------------------------------------------------
+    // MATRICULAS
+    Route::apiResource('modulos-formativos.matriculas', MatriculasController::class)->parameters([
+        'modulos-formativos' => 'moduloFormativo'
+    ]);
+
+    // --------------------------------------------------
+    // RESULTADOS APRENDIZAJE
+    Route::apiResource('modulos-formativos.resultados-aprendizaje', ResultadoAprendizajeController::class)->parameters([
+        'modulos-formativos' => 'moduloFormativo'
+    ]);
+
+    // --------------------------------------------------
+    // CRITERIOS EVALUACION
+    Route::apiResource('resultados-aprendizaje.criterios-evaluacion', CriterioEvaluacionController::class)->parameters([
+        'resultados-aprendizaje' => 'resultadoAprendizaje'
     ]);
 });
 
