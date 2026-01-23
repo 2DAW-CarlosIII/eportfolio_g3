@@ -5,63 +5,62 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AsignacionesResource;
 use App\Models\Asignaciones;
+use App\Models\Evidencia;
 use Illuminate\Http\Request;
 
 class AsignacionesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
+    public function index(Request $request, Evidencia $evidencia)
     {
-         return AsignacionesResource::collection(
-            Asignaciones::orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
-            ->paginate($request->perPage));
+        return AsignacionesResource::collection(
+            Asignaciones::where('evidencia_id', $evidencia->id)
+                ->orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
+                ->paginate($request->perPage)
+        );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Request $request, Evidencia $evidencia)
     {
-         $asignacion = json_decode($request->getContent(), true);
+        $asignacionData = json_decode($request->getContent(), true);
+        $asignacionData['evidencia_id'] = $evidencia->id;
 
-        $asignacion = Asignaciones::create($asignacion);
-
+        $asignacion = Asignaciones::create($asignacionData);
         return new AsignacionesResource($asignacion);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Asignaciones $asignaciones)
+    public function show(Evidencia $evidencia, Asignaciones $asignaciones_revision)
     {
-        return new AsignacionesResource($asignaciones);
+        abort_if($asignaciones_revision->evidencia_id !== $evidencia->id, 404);
+        return new AsignacionesResource($asignaciones_revision);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Asignaciones $asignaciones)
+    public function update(Request $request, Evidencia $evidencia, Asignaciones $asignaciones_revision)
     {
-        $asignacionesData = json_decode($request->getContent(), true);
-        $asignaciones->update($asignacionesData);
-
-        return new AsignacionesResource($asignaciones);
+        abort_if($asignaciones_revision->evidencia_id !== $evidencia->id, 404);
+        $asignacionData = json_decode($request->getContent(), true);
+        $asignaciones_revision->update($asignacionData);
+        return new AsignacionesResource($asignaciones_revision);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Asignaciones $asignaciones)
+    public function destroy(Evidencia $evidencia, Asignaciones $asignaciones_revision)
     {
         try {
-            $asignaciones->delete();
+            abort_if($asignaciones_revision->evidencia_id !== $evidencia->id, 404);
+            $asignaciones_revision->delete();
             return response()->json(null, 204);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error: ' . $e->getMessage()
             ], 400);
         }
+    }
+
+    public function asignacionUsuarios(Request $request, $user_id)
+    {
+        return AsignacionesResource::collection(
+            Asignaciones::where('asignado_por_id', $user_id)
+                ->orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
+                ->paginate($request->per_page)
+        );
     }
 }

@@ -1,19 +1,34 @@
 <?php
-
-use App\Http\Controllers\API\EvidenciaController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\ComentariosController;
+use App\Http\Controllers\API\AsignacionesController;
+use App\Http\Controllers\API\CriteriosTareasController;
 use App\Http\Controllers\API\EvaluacionEvidenciaController;
+use App\Http\Controllers\API\EvidenciaController;
 use App\Http\Controllers\API\TareasController;
+use App\Http\Controllers\API\EvaluacionEvidenciaController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::prefix('v1')->group(function () {
+    // ------------------------------------------------
+    // COMENTARIOS
+    Route::apiResource('evidencias.comentarios', ComentariosController::class);
+
+    // ------------------------------------------------
+    // ASIGNACIONES
+    Route::apiResource('evidencias.asignaciones-revision', AsignacionesController::class);
+
+    // ------------------------------------------------
+    // USER-ASIGNACIONES
+    Route::get('users/{user_id}/asignaciones-revision', [AsignacionesController::class, 'asignacionUsuarios']);
+    
     // --------------------------------------------------
     // TAREAS
     Route::apiResource('tareas', TareasController::class)->only('store', 'update', 'destroy');
@@ -36,11 +51,6 @@ Route::prefix('v1')->group(function () {
     ]);
 });
 
-/*
-|--------------------------------------------------------------------------
-| FALLBACK PHP-CRUD-API
-|--------------------------------------------------------------------------
-*/
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
         'address' => env('DB_HOST', '127.0.0.1'),

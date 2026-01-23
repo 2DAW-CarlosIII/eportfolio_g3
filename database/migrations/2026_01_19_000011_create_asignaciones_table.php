@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('evidencia_id')->constrained('evidencias')->onDelete('cascade'); //evidencias (tabla)
             $table->foreignId('revisor_id')->constrained('users')->onDelete('cascade'); //users (tabla)
             $table->foreignId('asignado_por_id')->constrained('users')->onDelete('cascade'); //users (tabla)
+            $table->enum('estado', ['pendiente', 'en_proceso', 'completada'])->default('pendiente');
+            $table->date('fecha_limite')->nullable(false);
             $table->timestamps();
         });
     }
