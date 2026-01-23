@@ -13,10 +13,10 @@ class ComentariosController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, Evidencia $evidencia)
+    public function index(Request $request, Evidencia $evidencia_id)
     {
          return ComentariosResource::collection(
-            Comentarios::where('evidencia_id', $evidencia->id)
+            Comentarios::where('evidencia_id', $evidencia_id->id)
                 ->orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
                 ->paginate($request->perPage)
         );

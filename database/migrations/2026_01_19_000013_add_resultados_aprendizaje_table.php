@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('resultados_aprendizaje', function (Blueprint $table) {
-            $table->foreignId('modulo_formativo_id')->constrained('modulos_formativos')->onDelete('cascade'); //ciclo_formativo (tabla)
+            //$table->foreignId('modulo_formativo_id')->constrained('modulos_formativos')->onDelete('cascade'); //ciclo_formativo (tabla)
 
         });
     }
@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('resultados_aprendizaje', function (Blueprint $table) {
-            $table->dropForeign(['modulo_formativo_id']);
-            $table->dropColumn('modulo_formativo_id');
+            //$table->dropForeign(['modulo_formativo_id']);
+            //$table->dropColumn('modulo_formativo_id');
         });
     }
 };

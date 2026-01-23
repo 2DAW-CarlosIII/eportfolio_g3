@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CriteriosTareasResource;
 use App\Models\CriteriosTareas;
+use App\Models\Tarea;
 use Illuminate\Http\Request;
 
 class CriteriosTareasController extends Controller

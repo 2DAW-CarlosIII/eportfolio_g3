@@ -15,28 +15,24 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
-    // ------------------------------------------------
-    // COMENTARIOS
-    Route::apiResource('evidencias.comentarios', ComentariosController::class)
-        ->parameters([
-            'evidencias' => 'evidencia_id',
-            'comentarios' => 'comentario_id'
-        ]);
 
-    // ------------------------------------------------
-    // ASIGNACIONES
-    Route::apiResource('evidencias.asignaciones-revision', AsignacionesController::class)
-        ->parameters([
-            'evidencias' => 'evidencias_id',
-            'asignaciones-revision' => 'asignacion-revision_id'
-        ]);
+    Route::apiResource(
+        'evidencias.comentarios',
+        ComentariosController::class
+    );
 
-    // ------------------------------------------------
-    // USER-ASIGNACIONES
-    Route::get('users/{user_id}/asignaciones-revision', [AsignacionesController::class, 'asignacionUsuarios']);
+    Route::apiResource(
+        'evidencias.asignaciones-revision',
+        AsignacionesController::class
+    );
+
+    Route::get(
+        'revisores/{revisor_id}/asignaciones-revision',
+        [AsignacionesController::class, 'asignacionesPorRevisor']
+    );
 });
 
-Route::any('/{any}', function (ServerRequestInterface $request) {
+/*Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
         'address'  => env('DB_HOST', '127.0.0.1'),
         'database' => env('DB_DATABASE', 'forge'),
@@ -60,4 +56,4 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
 
     return $response;
 
-})->where('any', '.*');
+})->where('any', '.*');*/
