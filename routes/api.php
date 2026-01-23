@@ -1,40 +1,78 @@
 <?php
 
-use App\Http\Controllers\API\CriterioEvaluacionController;
-use App\Http\Controllers\API\MatriculasController;
-use App\Http\Controllers\API\ResultadoAprendizajeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
+use App\Http\Controllers\API\ComentariosController;
+use App\Http\Controllers\API\AsignacionesController;
+use App\Http\Controllers\API\CriteriosTareasController;
+use App\Http\Controllers\API\EvaluacionEvidenciaController;
+use App\Http\Controllers\API\EvidenciaController;
+use App\Http\Controllers\API\TareasController;
+use App\Http\Controllers\API\CriterioEvaluacionController;
+use App\Http\Controllers\API\MatriculasController;
+use App\Http\Controllers\API\ResultadoAprendizajeController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Rutas /api/v1
-
+// Rutas PHP-CRUD-API
 Route::prefix('v1')->group(function () {
+    // ------------------------------------------------
+    // COMENTARIOS
+    Route::apiResource('evidencias.comentarios', ComentariosController::class);
 
+    // ------------------------------------------------
+    // ASIGNACIONES
+    Route::apiResource('evidencias.asignaciones-revision', AsignacionesController::class);
 
+    // ------------------------------------------------
+    // USER-ASIGNACIONES
+    Route::get('users/{user_id}/asignaciones-revision', [AsignacionesController::class, 'asignacionUsuarios']);
+    
+    // --------------------------------------------------
+    // TAREAS
+    Route::apiResource('tareas', TareasController::class)->only('store', 'update', 'destroy');
+    Route::apiResource('criterios-evaluacion.tareas', TareasController::class)
+        ->only('index', 'show')
+        ->parameters(['criterios-evaluacion' => 'criterios']);
+    Route::apiResource('resultados-aprendizaje.tareas', TareasController::class)
+        ->only('index')
+        ->parameters(['resultados-aprendizaje' => 'resultados']);
+
+    // --------------------------------------------------
+    // EVIDENCIAS
+    Route::apiResource('tareas.evidencias', EvidenciaController::class);
+    Route::get('users/{parent_id}/evidencias', [EvidenciaController::class, 'showUserEvidencias']);
+
+    // --------------------------------------------------
+    // EVALUACION EVIDENCIAS
+    Route::apiResource('evidencias.evaluaciones-evidencias', EvaluacionEvidenciaController::class)->parameters([
+        'evaluaciones-evidencias' => 'evaluacionEvidencia'
+    ]);
+  
+    // --------------------------------------------------
+    // MATRICULAS
     Route::apiResource('modulos-formativos.matriculas', MatriculasController::class)->parameters([
         'modulos-formativos' => 'moduloFormativo'
     ]);
 
-    //Route::get('matriculas', [MatriculasController::class, 'modulosMatriculados'])->middleware(['auth:sanctum']);
-
-
+    // --------------------------------------------------
+    // RESULTADOS APRENDIZAJE
     Route::apiResource('modulos-formativos.resultados-aprendizaje', ResultadoAprendizajeController::class)->parameters([
         'modulos-formativos' => 'moduloFormativo'
     ]);
 
+    // --------------------------------------------------
+    // CRITERIOS EVALUACION
     Route::apiResource('resultados-aprendizaje.criterios-evaluacion', CriterioEvaluacionController::class)->parameters([
         'resultados-aprendizaje' => 'resultadoAprendizaje'
     ]);
 });
 
-// Rutas PHP-CRUD-API
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
         'address' => env('DB_HOST', '127.0.0.1'),
@@ -54,4 +92,4 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     }
     return $response;
 
-})->where('any', '.*')->middleware(['auth:sanctum']);
+})->where('any', '.*');

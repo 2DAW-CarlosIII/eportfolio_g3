@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('resultados_aprendizaje', function (Blueprint $table) {
             $table->id();
-            //$table->foreignId('modulo_formativo_id')->constrained('modulo_formativo')->onDelete('cascade'); //ciclo_formativo (tabla)
+            //$table->foreignId('modulo_formativo_id')->constrained('ciclos_formativos')->onDelete('cascade'); //ciclo_formativo (tabla)
             $table->string('codigo', 50);
             $table->string('descripcion');
             $table->float('peso_procentaje')->min(0)->max(100);

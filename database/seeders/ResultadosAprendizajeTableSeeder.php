@@ -17,7 +17,7 @@ class ResultadosAprendizajeTableSeeder extends Seeder
         foreach (self::$resultados_aprendizaje as $resultado_aprendizaje) {
             ResultadoAprendizaje::insert([
                 'codigo' => $resultado_aprendizaje['codigo'],
-                'modulo_formativo_id' => $resultado_aprendizaje['modulo_formativo_id'],
+                //'modulo_formativo_id' => $resultado_aprendizaje['modulo_formativo_id'],
                 'descripcion' => $resultado_aprendizaje['descripcion'],
                 'peso_procentaje' => $resultado_aprendizaje['peso_procentaje'],
                 'orden' => $resultado_aprendizaje['orden'],
