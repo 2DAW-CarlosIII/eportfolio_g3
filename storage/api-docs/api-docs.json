@@ -1923,6 +1923,15 @@
                         "schema": {
                             "type": "integer"
                         }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the evaluacionevidencia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
@@ -2391,6 +2400,15 @@
                         "name": "parent_id",
                         "in": "path",
                         "description": "ID of the tarea",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the evidencia",
                         "required": true,
                         "schema": {
                             "type": "integer"

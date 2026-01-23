@@ -10,7 +10,7 @@ use App\Http\Controllers\API\CriteriosTareasController;
 use App\Http\Controllers\API\EvaluacionEvidenciaController;
 use App\Http\Controllers\API\EvidenciaController;
 use App\Http\Controllers\API\TareasController;
-use App\Http\Controllers\EvidenciasController;
+use App\Http\Controllers\API\EvaluacionEvidenciaController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
@@ -28,6 +28,7 @@ Route::prefix('v1')->group(function () {
     // ------------------------------------------------
     // USER-ASIGNACIONES
     Route::get('users/{user_id}/asignaciones-revision', [AsignacionesController::class, 'asignacionUsuarios']);
+    
     // --------------------------------------------------
     // TAREAS
     Route::apiResource('tareas', TareasController::class)->only('store', 'update', 'destroy');
@@ -35,7 +36,7 @@ Route::prefix('v1')->group(function () {
         ->only('index', 'show')
         ->parameters(['criterios-evaluacion' => 'criterios']);
     Route::apiResource('resultados-aprendizaje.tareas', TareasController::class)
-       ->only('index')
+        ->only('index')
         ->parameters(['resultados-aprendizaje' => 'resultados']);
 
     // --------------------------------------------------
@@ -52,26 +53,21 @@ Route::prefix('v1')->group(function () {
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
-        'address'  => env('DB_HOST', '127.0.0.1'),
+        'address' => env('DB_HOST', '127.0.0.1'),
         'database' => env('DB_DATABASE', 'forge'),
         'username' => env('DB_USERNAME', 'forge'),
         'password' => env('DB_PASSWORD', ''),
         'basePath' => '/api',
     ]);
-
     $api = new Api($config);
     $response = $api->handle($request);
 
     try {
         $records = json_decode($response->getBody()->getContents())->records;
-        $response = response()->json(
-            $records,
-            200,
-            ['X-Total-Count' => count($records)]
-        );
+        $response = response()->json($records, 200, $headers = ['X-Total-Count' => count($records)]);
     } catch (\Throwable $th) {
-    }
 
+    }
     return $response;
 
 })->where('any', '.*');
