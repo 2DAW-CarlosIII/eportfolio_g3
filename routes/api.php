@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
@@ -8,6 +7,9 @@ use Tqdev\PhpCrudApi\Config\Config;
 use App\Http\Controllers\API\ComentariosController;
 use App\Http\Controllers\API\AsignacionesController;
 use App\Http\Controllers\API\CriteriosTareasController;
+use App\Http\Controllers\API\EvaluacionEvidenciaController;
+use App\Http\Controllers\API\EvidenciaController;
+use App\Http\Controllers\API\TareasController;
 use App\Http\Controllers\EvidenciasController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
@@ -15,24 +17,40 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
+    // ------------------------------------------------
+    // COMENTARIOS
+    Route::apiResource('evidencias.comentarios', ComentariosController::class);
 
-    Route::apiResource(
-        'evidencias.comentarios',
-        ComentariosController::class
-    );
+    // ------------------------------------------------
+    // ASIGNACIONES
+    Route::apiResource('evidencias.asignaciones-revision', AsignacionesController::class);
 
-    Route::apiResource(
-        'evidencias.asignaciones-revision',
-        AsignacionesController::class
-    );
+    // ------------------------------------------------
+    // USER-ASIGNACIONES
+    Route::get('users/{user_id}/asignaciones-revision', [AsignacionesController::class, 'asignacionUsuarios']);
+    // --------------------------------------------------
+    // TAREAS
+    Route::apiResource('tareas', TareasController::class)->only('store', 'update', 'destroy');
+    Route::apiResource('criterios-evaluacion.tareas', TareasController::class)
+        ->only('index', 'show')
+        ->parameters(['criterios-evaluacion' => 'criterios']);
+    Route::apiResource('resultados-aprendizaje.tareas', TareasController::class)
+       ->only('index')
+        ->parameters(['resultados-aprendizaje' => 'resultados']);
 
-    Route::get(
-        'revisores/{revisor_id}/asignaciones-revision',
-        [AsignacionesController::class, 'asignacionesPorRevisor']
-    );
+    // --------------------------------------------------
+    // EVIDENCIAS
+    Route::apiResource('tareas.evidencias', EvidenciaController::class);
+    Route::get('users/{parent_id}/evidencias', [EvidenciaController::class, 'showUserEvidencias']);
+
+    // --------------------------------------------------
+    // EVALUACION EVIDENCIAS
+    Route::apiResource('evidencias.evaluaciones-evidencias', EvaluacionEvidenciaController::class)->parameters([
+        'evaluaciones-evidencias' => 'evaluacionEvidencia'
+    ]);
 });
 
-/*Route::any('/{any}', function (ServerRequestInterface $request) {
+Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
         'address'  => env('DB_HOST', '127.0.0.1'),
         'database' => env('DB_DATABASE', 'forge'),
@@ -56,4 +74,4 @@ Route::prefix('v1')->group(function () {
 
     return $response;
 
-})->where('any', '.*');*/
+})->where('any', '.*');

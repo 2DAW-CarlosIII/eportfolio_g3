@@ -8,6 +8,6 @@ class Asignaciones extends Model
 {
     protected $table = 'asignaciones';
 
-    protected $fillable = ['evidencia_id', 'revisor_id', 'estado', 'comentarios'];
+    protected $fillable = ['evidencia_id', 'revisor_id', 'asignado_por_id', 'fecha_limite', 'estado', 'comentarios'];
 
 }

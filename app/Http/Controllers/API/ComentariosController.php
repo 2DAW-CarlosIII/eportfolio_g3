@@ -13,10 +13,10 @@ class ComentariosController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, Evidencia $evidencia_id)
+    public function index(Request $request, Evidencia $evidencia)
     {
-         return ComentariosResource::collection(
-            Comentarios::where('evidencia_id', $evidencia_id->id)
+        return ComentariosResource::collection(
+            Comentarios::where('evidencia_id', $evidencia->id)
                 ->orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
                 ->paginate($request->perPage)
         );
@@ -37,9 +37,9 @@ class ComentariosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Comentarios $comentario, Evidencia $evidencia)
+    public function show(Evidencia $evidencia, Comentarios $comentario)
     {
-         abort_if($comentario->evidencia_id !== $evidencia->id, 404);
+        abort_if($comentario->evidencia_id !== $evidencia->id, 404);
         return new ComentariosResource($comentario);
     }
 
@@ -59,11 +59,16 @@ class ComentariosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comentarios $comentario, Evidencia $evidencia)
+    public function destroy(Evidencia $evidencia, Comentarios $comentario)
     {
-        abort_if($comentario->evidencia_id !== $evidencia->id, 404);
-
-        $comentario->delete();
-        return response()->json(null, 204);
+        try {
+            abort_if($comentario->evidencia_id !== $evidencia->id, 404);
+            $comentario->delete();
+            return response()->json(null, 204);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error: ' . $e->getMessage()
+            ], 400);
+        }
     }
 }
