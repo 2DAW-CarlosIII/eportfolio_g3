@@ -1,6 +1,7 @@
 <x-layout>
     <div class="w-full max-w-2xl mx-auto py-10 px-4 text-gray-900">
-        <h1 class="text-3xl font-bold mb-6 text-black">Editar familia profesional</h1>
+        <h1 class="text-3xl font-bold mb-6 text-black">Modificar familia profesional {{ $id }}</h1>
+
 
         <form action="{{ route('familias-profesionales.update', $id) }}" method="POST" class="space-y-5 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
             @csrf
