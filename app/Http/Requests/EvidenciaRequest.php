@@ -33,6 +33,6 @@ return [
 'estado_validacion.required' => 'El campo estado_validacion es obligatorio.',
 ];
 }
-
 }
+
 
