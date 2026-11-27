@@ -24,3 +24,7 @@ Route::get('/pruebas', function () {
 require __DIR__.'/familias-profesionales.php';
 
 require __DIR__.'/ciclos-formativos.php';
+
+Route::get('/prueba-mensaje', function(){
+    return redirect()->route('evidencias.index')->with('mensaje', 'Esto es un mensaje de prueba');
+});
