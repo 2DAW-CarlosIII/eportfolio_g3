@@ -1,6 +1,6 @@
 <x-layout>
 <div class="max-w-3xl mx-auto p-6 text-gray-900">
-<h1 class="text-2xl font-bold mb-6">Modificar evidencia</h1>
+<h1 class="text-2xl font-bold mb-6">Modificar evidencia {{ $id }}</h1>
 
 <form action="{{ route('evidencias.update', $id ?? 1) }}" method="POST">
 @csrf
