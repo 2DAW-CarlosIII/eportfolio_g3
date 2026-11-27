@@ -1,4 +1,4 @@
-<x-sendit.layout>
+<x-layout>
     <div class="max-w-3xl mx-auto py-12 px-4" style="color: #111827;">
         <span class="font-bold text-sm uppercase tracking-wider" style="color: #15803d;">
             {{ $familia['codigo'] }}
@@ -26,4 +26,4 @@
             </a>
         </div>
     </div>
-</x-sendit.layout>
+</x-layout>
