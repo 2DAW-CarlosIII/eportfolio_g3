@@ -31,6 +31,14 @@
 <body>
     <x-sendit.header :titulo0="$titulo0" :titulo1="$titulo1" :titulo2="$titulo2" :titulo3="$titulo3"/>
     <x-sendit.main>
+       @session('mensaje')
+      <div class="mb-6 p-4 rounded-lg border border-green-400 bg-green-50 text-green-800 flex items-center justify-between" role="alert">
+      <div class="flex items-center">
+      <i class="bi bi-check-circle-fill text-green-500 text-xl mr-3"></i>
+      <span class="font-medium">{{ $value }}</span>
+      </div>
+      </div>
+    @endsession
         {{ $slot }}
     </x-sendit.main>
     <x-sendit.footer />
