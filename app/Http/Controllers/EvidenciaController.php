@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
+use App\Http\Requests\EvidenciaRequest;
 
 class EvidenciaController extends Controller
 {
@@ -50,4 +51,23 @@ public function edit(int $id): View
          'evidencia' => $this->evidencias[$id], 
    ]); 
 } 
+public function store(EvidenciaRequest $request)
+{
+$datos = $request->validated(); 
+
+return redirect()->route('evidencias.index')
+->with('mensaje', 'Evidencia «' . $request->descripcion . '» creada.');
+}
+
+public function update(EvidenciaRequest $request, int $id)
+{
+abort_unless(isset($this->evidencias[$id]), 404);
+
+$datos = $request->validated(); 
+
+return redirect()->route('evidencias.show', $id)
+->with('mensaje', 'Evidencia «' . $request->descripcion . '» actualizada.');
+}
+
+
 }
