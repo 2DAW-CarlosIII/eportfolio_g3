@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CicloFormativoRequest;
 
 class CicloFormativoController extends Controller
 {
@@ -1521,6 +1522,16 @@ class CicloFormativoController extends Controller
     }
     public function edit($id){
         abort_unless(isset($this->ciclosFormativos[$id]), 404);
-        return view('ciclos-formativos.edit', ['id' => $id]);
+        $ciclo = $this->ciclosFormativos[$id];
+        return view('ciclos-formativos.edit', ['id' => $id, 'ciclo' => $ciclo]);
+    }
+    public function store(CicloFormativoRequest $request){
+        $nombre = $request->input('nombre');
+        return redirect()->route('ciclos-formativos.index')->with('mensaje', 'Ciclo formativo «' . $nombre . '» creado.');
+    }
+    public function update(CicloFormativoRequest $request, $id){
+        abort_unless(isset($this->ciclosFormativos[$id]), 404);
+        $ciclo = $request->all();
+        return redirect()->route('ciclos-formativos.show', ['id' => $id])->with('mensaje', 'Ciclo formativo «' . $ciclo['nombre'] . '» actualizado.');
     }
 }

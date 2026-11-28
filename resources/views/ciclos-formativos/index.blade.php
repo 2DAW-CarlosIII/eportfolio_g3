@@ -1,13 +1,15 @@
 {{-- cards conseguidas de https://flowbite.com/docs/components/card/  --}}
 <x-layout>
     <div class="flex w-full flex-col">
-        <h1 class="mb-6 text-3xl font-bold">Ciclos formativos</h1>
-
+        <div class="mb-6 flex items-center justify-between">
+            <h1 class="mb-6 text-3xl font-bold">Ciclos formativos</h1>
+            <a href="{{ route('ciclos-formativos.create') }}" class="bg-[#cff245] px-4 py-2 text-black rounded-xl text-sm font-medium">Añadir ciclo formativo</a>
+        </div>
         <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
            @foreach ($ciclos as $id => $ciclo)
                 <li>
                     {{--https://laravel.com/docs/13.x/routing#named-routes--}}
-                        <a href="{{ route('ciclos-formativos.show', ['id' => $id]) }}" class="flex flex-col justify-between h-full p-8 bg-gray-50 rounded-3xl border-2 shadow-md hover:shadow-lg hover:bg-gray-100 transition-all duration-200">
+                        <a href="{{ route('ciclos-formativos.show', ['id' => $id]) }}" class="flex h-full flex-col justify-between rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition hover:shadow-md">
                         <h5 class="mb-3 text-2xl font-semibold tracking-tight text-heading leading-8">
                             {{ $ciclo['nombre'] }}
                         </h5>

@@ -3,7 +3,7 @@
         <h1 class="mb-6 text-3xl font-bold">Detalles del ciclo formativo:</h1>
         <ul class="grid grid-cols-1 gap-6">
             <li>
-                <div class="flex flex-col justify-between h-full p-8 bg-gray-50 rounded-3xl border-2 shadow-md hover:shadow-lg hover:bg-gray-100 transition-all duration-200">
+                <div class="flex h-full flex-col justify-between rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition hover:shadow-md">
                     <h5 class="mb-3 text-2xl font-semibold tracking-tight text-heading leading-8">
                         {{ $ciclo['nombre'] }}
                     </h5>

@@ -10,4 +10,6 @@ Route::prefix('ciclos-formativos')
         Route::get('/show/{id}', 'show')->name('show')->whereNumber('id');
         Route::get('/create', 'create')->name('create');
         Route::get('/edit/{id}', 'edit')->name('edit')->whereNumber('id');
+        Route::post('/', 'store')->name('store');
+        Route::put('/edit/{id}', 'update')->name('update')->whereNumber('id');
     });
